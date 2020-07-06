@@ -3,7 +3,7 @@ export default class PDFJs {
       this.iframe = null;
     }
 
-    init = (source, element, openNewPostPopup, openViewPostPopup) => {
+    init = (source, initial, element, openNewPostPopup, openViewPostPopup) => {
       this.iframe = document.createElement('iframe');
   
       this.iframe.src = `/customized-pdfjs/web/viewer.html?file=${source}`;
@@ -23,6 +23,12 @@ export default class PDFJs {
               //open popup
               openNewPostPopup(data);
               break;
+            case 'ready':
+              this.iframe.contentWindow.postMessage({
+                type: 'setPost',
+                posts: initial
+              }, '*');
+              break;
             case 'viewPost':
               openViewPostPopup(data.post);
               break;
@@ -30,7 +36,7 @@ export default class PDFJs {
               break;
           }
         }
-      };
+      }.bind(this);
     }
     newPost = (comment, data) => {
       if(this.iframe != null)

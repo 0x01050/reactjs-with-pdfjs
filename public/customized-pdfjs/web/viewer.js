@@ -2024,6 +2024,9 @@ function webViewerPageRendered(evt) {
       }
     }
   });
+  window.top.postMessage({
+    type: 'ready'
+  }, '*');
 
   if (PDFViewerApplication.pdfSidebar.isThumbnailViewVisible) {
     const thumbnailView = PDFViewerApplication.pdfThumbnailViewer.getThumbnail(pageIndex);
@@ -10228,7 +10231,7 @@ class PDFPageView {
   }
 
   renderPost() {
-    var dotWidth = 6;
+    var dotWidth = 12;
     this.dotLayer.innerHTML = '';
 
     for (var post of this.dotArray) {
@@ -10236,6 +10239,7 @@ class PDFPageView {
       dotDiv.style.position = 'absolute';
       dotDiv.style.backgroundColor = 'red';
       dotDiv.style.borderRadius = '50%';
+      dotDiv.style.opacity = '50%';
       dotDiv.style.width = dotWidth + 'px';
       dotDiv.style.height = dotWidth + 'px';
       dotDiv.style.left = 'calc(' + post.x + '% - ' + dotWidth / 2 + 'px)';

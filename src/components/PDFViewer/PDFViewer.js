@@ -17,10 +17,10 @@ export default class PDFViewer extends React.Component {
   }
 
   componentDidMount() {
-    const { src } = this.props;
+    const { src, initial } = this.props;
     const element = this.viewerRef.current;
 
-    this.backend.init(src, element, this.openNewPostPopup.bind(this), this.openViewPostPopup.bind(this));
+    this.backend.init(src, initial, element, this.openNewPostPopup.bind(this), this.openViewPostPopup.bind(this));
   }
 
   openNewPostPopup(data) {
