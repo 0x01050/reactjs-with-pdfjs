@@ -24,7 +24,7 @@ class App extends Component {
               }
             },
             {
-              page: 1, x: 55, y: 50, post: {
+              page: 1, x: 55, y: 70, post: {
                 description: 'القصيييدة جميلة لكن غريب أنه يمدح المنطقة والمكان بكثرة الذباب',
                 datetime: '7/6/2020, 02:03:23 PM'
               }
